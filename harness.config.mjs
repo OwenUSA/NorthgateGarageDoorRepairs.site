@@ -82,4 +82,29 @@ export default {
       note: 'Service-category tile photo behind a CTA card.' },
   ],
   sharedSlots: { logo: true, favicon: true, 'icon-close': true },
+
+  // --- Prompt 3: content divergence ----------------------------------------
+  // Exempt from n-gram/trigram stripping so they can never manufacture a shared n-gram
+  // or inflate overlap between a roofing site's copy and a garage-door site's copy.
+  industryAllowlist: [
+    'garage door', 'torsion spring', 'extension spring', 'opener', 'cable', 'roller',
+    'track', 'panel', 'off-track', 'remote', 'keypad', 'sensor', 'weather seal',
+    'residential', 'commercial', 'same-day', 'free estimate', 'repair', 'installation',
+    'replacement',
+  ],
+  // Sections where a length-parity percentage against the reference would be
+  // meaningless or actively misleading — always reported EXEMPT, never PASS/FAIL. See
+  // docs/content-divergence.md for the full reasoning per row.
+  lengthExempt: {
+    '/about::intro-body':
+      "reference /about-us/ segments as header+footer chrome only under our sectionCandidates (segMode: fallback) -- the real body content isn't isolated as its own band, so there's no reliable reference length to size against. Sized to about-page convention instead.",
+    '/services::symptom-prompt':
+      'reference band (s01) carries no paragraph/list text -- icons and short labels only, bodyChars=0. No text length to size against.',
+    '/services::services-list':
+      'reference band (s03) is a widget-driven list the probe cannot cleanly separate from surrounding chrome; sized to a working symptom-first services page instead.',
+    '/contact::info-band':
+      'reference band (s02) carries no paragraph/list text -- icon/hours chips only, bodyChars=0. A percentage delta against a zero-char baseline is undefined.',
+    '/contact::map':
+      'reference band (s03) is five Google Maps iframes with no body copy -- the D-02 city-grid pattern being deleted. Not a text-length comparison; ours is one coords-only embed per D-07/D-08.',
+  },
 };
