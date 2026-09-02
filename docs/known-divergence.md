@@ -5,6 +5,20 @@ Checked before starting any fix (per CLAUDE.md). Two states only: **floored**
 without a reason to reopen) and **OPEN — not floored** (still eligible for iteration,
 just not yet closed). Nothing here is "floored" by default; each entry says which.
 
+## Prompt 8 — convergence loop, run and closed
+
+Re-read this file, then re-ran a full capture+diff sweep (all 5 routes, all 3
+breakpoints) before touching anything, per the loop's own instruction. Result: byte-
+identical to the state `docs/divergence.md` already recorded at the end of Prompt 7 --
+83 rows, 41 PASS, 22 FAIL, 0 BLOCKED. Every one of the 22 FAIL rows is already listed
+below with a floored rationale (15 `(page)` height-delta rows, `/services` `s03` x2,
+`/contact` `s02` x3, `/contact` `s03`@1440, `/contact` `s04`@390) -- there is nothing in
+`docs/divergence.md` in an **OPEN — not floored** state to dispatch a batch against.
+No section crossed `ITERATION_CAP` this loop because no section was touched this loop:
+Prompts 6 and 7 already ran every section to convergence or to a floor. The table is
+green-or-floored; stopping here per the loop's own stated exit condition ("Stop and
+report only when the table is green or genuinely stuck").
+
 ## `/` home page — PAGE-level height delta (all three breakpoints)
 
 **Status: floored (explained, not a per-section defect).**
