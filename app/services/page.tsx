@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { copy } from '@/content/copy';
+import { SymptomPrompt } from '@/components/services/SymptomPrompt';
+import { ServicesList } from '@/components/services/ServicesList';
 
 export const metadata: Metadata = {
   title: copy.routes['/services'].meta.title,
@@ -8,8 +10,9 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="mx-auto max-w-(--container-max) px-(--container-padding) py-24">
-      <h1 className="text-3xl">Services -- shell stub</h1>
-    </div>
+    <>
+      <SymptomPrompt />
+      <ServicesList />
+    </>
   );
 }

@@ -24,11 +24,18 @@ export default {
     '/privacy-policy/': '/privacy',
   },
 
-  // This theme has no <section> tags and no <main>. Home/services pages use bespoke
-  // "<page>-section-<n>" siblings directly under .wrapper; about/contact/privacy are
-  // single WP article blobs (content-area) with no repeating band class. Try the
-  // specific pattern first, then generic fallbacks.
+  // `[data-section]` first: OUR OWN build tags every real section (including header/
+  // footer) with this attribute (identityAttr below), so it reliably yields >=2 matches
+  // even on a route with only one content section (/about, /privacy -- header+footer+1
+  // content section = 3) where 'main > section' alone never reaches the >=2 threshold a
+  // candidate needs to win. Harmless on the reference side: it has zero data-section
+  // attributes, so this candidate always yields 0 there and falls through to the
+  // reference-shaped candidates below, unchanged. This theme has no <section> tags and
+  // no <main>. Home/services pages use bespoke "<page>-section-<n>" siblings directly
+  // under .wrapper; about/contact/privacy are single WP article blobs (content-area)
+  // with no repeating band class. Try the specific pattern first, then generic fallbacks.
   sectionCandidates: [
+    '[data-section]',
     '.wrapper > div[class*="-section-"]',
     '[role="main"] > *',
     'main > section',

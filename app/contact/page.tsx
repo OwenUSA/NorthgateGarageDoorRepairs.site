@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
 import { copy } from '@/content/copy';
+import { ContactForm } from '@/components/contact/ContactForm';
+import { InfoBand } from '@/components/contact/InfoBand';
+import { ContactMapSection } from '@/components/contact/ContactMapSection';
+import { ReviewsOrCta } from '@/components/contact/ReviewsOrCta';
 
 export const metadata: Metadata = {
   title: copy.routes['/contact'].meta.title,
@@ -8,8 +12,11 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-(--container-max) px-(--container-padding) py-24">
-      <h1 className="text-3xl">Contact -- shell stub</h1>
-    </div>
+    <>
+      <ContactForm />
+      <InfoBand />
+      <ContactMapSection />
+      <ReviewsOrCta />
+    </>
   );
 }

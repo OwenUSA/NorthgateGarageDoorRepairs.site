@@ -77,6 +77,57 @@ ownership rule (shared files are the lead's job):
   invented one, so it was added as a token rather than forcing an explicit size onto
   elements that shouldn't need one.
 
+## Prompt 7 — `/about`, `/services`, `/contact`, `/privacy`
+
+**`/about`, `/privacy`: fixed a real harness bug, not a page bug.** Both routes have
+exactly one content section, and `segmentSections()`'s candidate list required >=2
+matches to "win" — a lone content section could never qualify on its own, so these
+pages were being measured as header+footer only (2 sections), silently missing their
+real content entirely. Fixed by adding `[data-section]` as the first `sectionCandidates`
+entry in `harness.config.mjs` (our own build tags every section including header/footer,
+so it always yields >=2; harmless on the reference side, which has zero `data-section`
+attributes and falls through to the reference-shaped candidates unchanged). After the
+fix both routes are fully green (all sections, all 3 breakpoints) except the `(page)`
+row, floored for the same reason as `/`'s (see above).
+
+**`/services` `s03` (services-list) @768/@1440 — status: floored.**
+Structural deviation ~5.3%, driven almost entirely by a `buttons`-count heuristic
+mismatch (ref 7, ours 24 before fixes, 24 after — see below) and `box.h` (reference is
+much taller). Two real attempts: (1) matched padding exactly to the reference
+(115/35 -> 160/60 -> 305/125, closed most other fields to 0% dev); (2) considered
+removing the accordion trigger's `<button>` semantics to shed 8 button-matches, rejected
+— swapping a real `<button>` for a fake `div[role=button]` purely to satisfy a count
+heuristic is an accessibility regression, not a fix, and the brief explicitly says each
+of the eight service blocks links to `tel:` and `/contact` (16 more unavoidable
+button-matches). The residual is a genuine content-shape difference: the reference's
+`services-list` is a plainer, less interactive block; ours is a required accordion with
+two mandatory CTAs per card. Not chasing further.
+
+**`/contact` `s02` (info-band) — status: floored, all 3 breakpoints.**
+Structural deviation 14.9–18.2%. The reference band computes `display: inline` and
+`overflow: clip` on its own wrapper with zero buttons — a genuinely atypical, near-empty
+element (already noted in `docs/content-divergence.md` as length-exempt, `bodyChars: 0`).
+Forcing our info band to `display: inline` would break block-level layout (width/height/
+margin don't apply predictably to inline boxes) for a working, accessible hours/phone/
+address card. One real attempt made (padding-only fix); not pursued further — this is a
+structural outlier on the reference side, not a defect on ours.
+
+**`/contact` `s03` (map) @1440 — status: floored, pre-existing rationale.**
+`box.h`/`box.w` deviation (~5.05%) is the direct, intentional consequence of D-02: the
+reference embeds five stacked Google Maps iframes here (a locations grid), ours is
+exactly one coords-only embed per D-07/D-08. Already documented as length-exempt in
+`docs/content-divergence.md`; no iteration spent.
+
+**`/contact` `s04` (reviews-or-cta) — status: green @768/@1440, floored @390.**
+Two real attempts: (1) matched padding exactly (closed most fields); (2) added a second
+real CTA ("Fill out the form instead", linking to `#contact-form`) alongside the phone
+button, which closed 768 and 1440 outright. At 390 the residual (~5.26%) is `buttons`
+(ref 6, ours 2) and `box.h` (reference nearly triple ours) — the reference's band is
+almost certainly a customer-reviews widget with several per-review controls. Per D-13
+(no fabricated review/rating markup), a third attempt would mean building fake
+review-widget interactivity to close a metric gap — not doing that. Floored on
+principle, not on iteration count.
+
 ## Email sweep
 
-`EMAIL SWEEP CLEAN` — re-run and pasted in the Prompt 6 report/commit.
+`EMAIL SWEEP CLEAN` — re-run and pasted in the Prompt 6 and Prompt 7 commits.
