@@ -10,3 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 }
+
+// output: "export" cannot infer this metadata route is static; say so explicitly.
+export const dynamic = "force-static";

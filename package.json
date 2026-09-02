@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "next dev -p 3102",
     "build": "next build",
-    "start": "next start -p 3102",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "serve": "npx serve out"
   },
   "dependencies": {
     "clsx": "2.1.1",

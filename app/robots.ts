@@ -7,3 +7,6 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: `${business.siteUrl}/sitemap.xml`,
   };
 }
+
+// output: "export" cannot infer this metadata route is static; say so explicitly.
+export const dynamic = "force-static";
