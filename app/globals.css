@@ -25,13 +25,21 @@
  * --------------------------------------------------------------------------------- */
 
 @theme {
-  /* Colour ramp */
-  --color-ink: #1f2933;
-  --color-ink-soft: #4b5563;
-  --color-ink-strong: #0b0f14;
+  /* Colour ramp -- Prompt 9 applied: seed 601103, split-complementary (+210deg),
+     primary hue 5, accent hue 215, neutral tint 0.046. See docs/known-divergence.md
+     for the seed record and docs/palette-candidates/README.md for how it was picked.
+     Mapping (palette.mjs canonical name -> this token), per harness.config.mjs's
+     referenceRamp comment: primary->ink, primaryDeep unused directly (ink-strong takes
+     neutral900, see below), accent->primary, accentDeep->primary-strong,
+     neutral0->surface, neutral200->surface-muted, neutral400->border,
+     neutral600->ink-soft/border-strong, neutral900->ink-strong (footer bg / drawer
+     overlay -- the only two roles --color-ink-strong actually renders). */
+  --color-ink: #322326;
+  --color-ink-soft: #6a4a51;
+  --color-ink-strong: #1e050c;
   --color-surface: #ffffff;
-  --color-surface-muted: #f1f3f4;
-  --color-border: #dde1e3;
+  --color-surface-muted: #ffeef1;
+  --color-border: #fcd5dc;
   /* Decorative dividers (footer rule, card outlines) use --color-border and are never
      contrast-gated. Anything a user has to perceive as an interactive boundary --
      secondary-button outlines, form-field borders -- uses this instead, added while
@@ -39,21 +47,17 @@
      against white, which is fine for a divider and a real accessibility bug for a
      control edge (WCAG 2.2 SC 1.4.11). Same value palette.mjs already calls
      `borderStrong` for this exact role. */
-  --color-border-strong: #4b5563;
-  /* Darkened one step from the original #c2410c/#9a3412 pair while wiring up Prompt 9's
-     AA gate: at L=0.553 the CTA fill held only 5.18:1 against white, and OKLCH hue
-     rotation at fixed L/C doesn't preserve sRGB contrast -- most rotated hues landed
-     just under the 4.5:1 floor. Shifting one lightness step down (still the same hue
-     and a comparable chroma) gives 7.31:1 in the original orange, with enough margin
-     that the rotation holds AA across the hues actually generated. */
-  --color-primary: #9a3412;
-  --color-primary-strong: #7c2d12;
+  --color-border-strong: #6a4a51;
+  /* CTA fill -- rotated from the pre-Prompt-9 #9a3412/#7c2d12 pair to seed 601103's
+     accent hue (215, dark teal). Gate-verified 6.61:1 white-on-fill. */
+  --color-primary: #086677;
+  --color-primary-strong: #025362;
   --color-on-primary: #ffffff;
 
   /* Semantic colours -- exempt from Prompt 9's hue rotation */
   --color-error: #b91c1c;
   --color-success: #15803d;
-  --color-focus: #2563eb;
+  --color-focus: #023a44;
 
   /* Type scale -- rem, rootFontPx = 16 */
   --text-xs: 0.8125rem;

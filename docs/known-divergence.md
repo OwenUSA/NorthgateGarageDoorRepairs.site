@@ -142,6 +142,37 @@ almost certainly a customer-reviews widget with several per-review controls. Per
 review-widget interactivity to close a metric gap — not doing that. Floored on
 principle, not on iteration count.
 
+## Palette — applied, permanent (Prompt 9)
+
+**Winning seed: 601103, split-complementary scheme (+210deg), primary hue 5, accent hue
+215 (dark teal CTA), neutral tint 0.046 (pale pink-tinted surfaces).** Picked by the human
+from the 5 gated candidates in `docs/palette-candidates/README.md`; applied for real into
+`app/globals.css`'s `@theme` block (the only file `harness.config.mjs`'s `tokenSources`
+points at). Gate-verified: CTA (white-on-fill) 6.61:1, all `pairsInUse` AA, semantic
+error/success/warning hues held (exempt from rotation), two-layer focus ring ≥3:1 against
+its halo.
+
+Colour divergence from the reference is intentional per D-09 (layout/type/spacing cloned,
+colour is our own) and is now permanently excluded from every diff/threshold/future
+iteration — never re-open a "colour doesn't match" finding against this seed. Re-running
+`node _shared/harness/src/diff.mjs` after applying the palette reproduced the exact same
+geometry/typography numbers as the Prompt 8 baseline (`a10a36c`): `Rows: 83 · FAIL: 22 ·
+PASS: 41 · BLOCKED: 0`, byte-identical except the report timestamp — proof nothing but
+colour moved. (An intermediate diff run against a stale `.harness/cap/ours` cache briefly
+showed spurious `token violations` FAILs on header/footer/map/process/policy-body; that
+was a stale-capture artifact, not a real regression — resolved by recapturing against a
+live `pnpm start` on port 3102 before re-diffing.)
+
+Token mapping applied (palette.mjs canonical name -> `app/globals.css` custom property):
+`primary` -> `--color-ink` (`#322326`), `accent` -> `--color-primary` (`#086677`,
+`accentDeep` -> `--color-primary-strong` `#025362`), `neutral0` -> `--color-surface`
+(`#ffffff`), `neutral200` -> `--color-surface-muted` (`#ffeef1`), `neutral400`/`border` ->
+`--color-border` (`#fcd5dc`), `neutral600`/`borderStrong` -> `--color-ink-soft` /
+`--color-border-strong` (`#6a4a51`), `neutral900` -> `--color-ink-strong` (`#1e050c`,
+footer bg / mobile-drawer overlay — the only two roles that token renders), `focus` ->
+`--color-focus` (`#023a44`). Semantic `error`/`success`/`warning` untouched.
+
 ## Email sweep
 
-`EMAIL SWEEP CLEAN` — re-run and pasted in the Prompt 6 and Prompt 7 commits.
+`EMAIL SWEEP CLEAN` — re-run and pasted in the Prompt 6 and Prompt 7 commits, and again
+after the Prompt 9 palette apply.
