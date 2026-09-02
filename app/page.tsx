@@ -1,16 +1,28 @@
 import type { Metadata } from 'next';
 import { copy } from '@/content/copy';
+import { Hero } from '@/components/home/Hero';
+import { ServicesGrid } from '@/components/home/ServicesGrid';
+import { Testimonials } from '@/components/home/Testimonials';
+import { Intro } from '@/components/home/Intro';
+import { Process } from '@/components/home/Process';
+import { HomeMapSection } from '@/components/home/HomeMapSection';
 
 export const metadata: Metadata = {
   title: copy.routes['/'].meta.title,
   description: copy.routes['/'].meta.description,
 };
 
-// Shell-only stub -- Prompt 5, item 8. Real sections land in Prompt 6.
+// Built top to bottom per docs/sections.md's reordering (structural change #1):
+// Hero -> ServicesGrid -> Testimonials -> Intro -> Process -> Map.
 export default function HomePage() {
   return (
-    <div className="mx-auto max-w-(--container-max) px-(--container-padding) py-24">
-      <h1 className="text-3xl">Home -- shell stub</h1>
-    </div>
+    <>
+      <Hero />
+      <ServicesGrid />
+      <Testimonials />
+      <Intro />
+      <Process />
+      <HomeMapSection />
+    </>
   );
 }

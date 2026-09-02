@@ -44,6 +44,12 @@
   /* Type scale -- rem, rootFontPx = 16 */
   --text-xs: 0.8125rem;
   --text-sm: 0.875rem;
+  /* The browser/root default (1rem = 16px) that an element with no explicit size
+     inherits -- e.g. every one of our section wrappers, which deliberately carry no
+     font-size override (see the body{} comment above). Declaring it as a real token
+     rather than leaving it "untokenised" is what makes NOVEL token-conformance
+     (TOKEN_THRESHOLD = 0) achievable without setting a size everywhere defensively. */
+  --text-md: 1rem;
   --text-base: 1.125rem;
   --text-lg: 1.375rem;
   --text-xl: 1.75rem;
@@ -111,8 +117,19 @@
     background-color: var(--color-surface);
     color: var(--color-ink-soft);
     font-family: var(--font-body);
-    font-size: var(--text-base);
-    line-height: var(--leading-normal);
+    /* No font-size override below 1440: the reference runs the browser/Preflight
+       default (16px, line-height 24 = 1.5) at 390/768, and only bumps to 18px/28
+       (1.556) at its desktop breakpoint -- confirmed against every section's own
+       computed fontSize/lineHeight in .harness/cap/ref/home-{390,768,1440}/meta.json.
+       Setting a flat 18px here at every width made every section register a false
+       structural divergence below 1440 (Prompt 6 diff). */
+  }
+
+  @media (min-width: 1440px) {
+    body {
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+    }
   }
 
   h1,

@@ -14,7 +14,10 @@ export function Header() {
   const toggleRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <header className="relative z-30 border-b border-(--color-border) bg-(--color-surface)">
+    <header
+      data-section="header"
+      className="relative z-30 bg-(--color-surface)"
+    >
       <div className="mx-auto flex max-w-(--container-max) items-center justify-between gap-4 px-(--container-padding) py-4">
         <Link href="/" className="font-display text-xl font-black text-(--color-ink)">
           {business.name}

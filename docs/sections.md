@@ -60,10 +60,10 @@ See `docs/content-divergence.md` for the measured lexical/length divergence per 
 | / | s04-top-quality-roofing | services-grid | ADAPTED | Largest band (2178px @1440) — service list. Regrouped by symptom vs. reference's category grouping (structural change #4). Moved up in page order (structural change #1). |
 | / | s05-the-hardest-working-roofing-contra | testimonials | ADAPTED | Reviews/trust band; ours uses `[TESTIMONIAL PLACEHOLDER]` blocks per D-13, no fabricated ratings/JSON-LD. Moved up in page order (structural change #1). |
 | / | s02-professional-roofing-in-georgia-s | intro | ADAPTED | Tagline/intro band, same purpose, fresh copy per D-10. Moved down in page order (structural change #1). |
-| / | s03 | (dropped) | DELETED | Unlabeled home-section-three, thin/image-heavy filler with almost no body copy. Structural change #2 (drop 1 of 2). |
-| / | s06 | (dropped) | DELETED | Unlabeled closing CTA band. Purpose absorbed into the footer instead. Structural change #2 (drop 2 of 2). |
-| / | (none) | process | NOVEL | "How a repair visit actually goes" — no reference counterpart. Structural change #2 (add 1 of 2). |
-| / | (none) | map | NOVEL | Reference home has no map section (it has a YouTube embed instead). Required on home per D-08. Structural change #2 (add 2 of 2). |
+| / | s03 | dropped-s03 | DELETED | Unlabeled home-section-three, thin/image-heavy filler with almost no body copy. Structural change #2 (drop 1 of 2). Note: previously written as our-section-id `(dropped)` -- parentheses aren't in diff.mjs's `[a-z0-9-]+` charset, so the row silently failed to parse and this section defaulted to class FIDELITY/UNPAIRED instead of DELETED (harmless here since status stays UNPAIRED either way, but fixed for clarity per the empty/malformed-id bug class). |
+| / | s06 | dropped-s06 | DELETED | Unlabeled closing CTA band. Purpose absorbed into the footer instead. Structural change #2 (drop 2 of 2). |
+| / |  | process | NOVEL | No reference counterpart (ref-section-id intentionally blank, not "(none)" -- diff.mjs's contract regex only accepts `[a-z0-9~-]*` in that column, and a bracketed placeholder fails to parse at all, silently dropping the row). "How a repair visit actually goes." Structural change #2 (add 1 of 2). |
+| / |  | map | NOVEL | No reference counterpart, same blank-column note as `process` above. Reference home has no map section (it has a YouTube embed instead). Required on home per D-08. Structural change #2 (add 2 of 2). |
 | / | footer | footer | ADAPTED | NAP block, hours, `SERVICE_AREA` sentence, no email column (D-03), no Locations link (D-02). |
 
 ## `/about` (ref: `/about-us/`)
@@ -99,7 +99,7 @@ See `docs/content-divergence.md` for the measured lexical/length divergence per 
 | route | ref-section-id | our-section-id | CLASS | reason |
 |---|---|---|---|---|
 | /privacy | header | header | ADAPTED | Shared shell, see `/` header row. |
-| /privacy | (none) | policy-body | NOVEL | No reference counterpart (reference also segments as header+footer chrome only, `segMode: fallback` — its real policy text is never isolated as its own band, same limitation as `/about`). Per D-16 our policy body is generated fresh to describe what this site actually does (phone-callback form, no email collection, no analytics/cookies). Measured by token conformance only, never pixel/length. |
+| /privacy |  | policy-body | NOVEL | No reference counterpart (reference also segments as header+footer chrome only, `segMode: fallback` — its real policy text is never isolated as its own band, same limitation as `/about`). Per D-16 our policy body is generated fresh to describe what this site actually does (phone-callback form, no email collection, no analytics/cookies). Measured by token conformance only, never pixel/length. |
 | /privacy | footer | footer | ADAPTED | Shared shell, see `/` footer row. |
 
 ## Deleted per D-02

@@ -6,7 +6,10 @@ import { business } from '@/lib/business';
 
 export function Footer() {
   return (
-    <footer className="border-t border-(--color-border) bg-(--color-ink-strong) text-(--color-surface)">
+    <footer
+      data-section="footer"
+      className="border-t border-(--color-border) bg-(--color-ink-strong) text-(--color-surface)"
+    >
       <div className="mx-auto max-w-(--container-max) px-(--container-padding) py-12">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
