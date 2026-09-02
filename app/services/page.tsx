@@ -6,6 +6,7 @@ import { ServicesList } from '@/components/services/ServicesList';
 export const metadata: Metadata = {
   title: copy.routes['/services'].meta.title,
   description: copy.routes['/services'].meta.description,
+  alternates: { canonical: '/services' },
 };
 
 export default function ServicesPage() {

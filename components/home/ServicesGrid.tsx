@@ -30,6 +30,7 @@ export function ServicesGrid() {
               <p className="mt-2 text-sm text-(--color-ink-soft)">{item.blurb}</p>
               <Link
                 href="/services"
+                aria-label={`Learn more about ${item.label}`}
                 className="cta-button mt-3 inline-block text-sm font-bold text-(--color-primary) underline lg:hidden"
               >
                 Learn more

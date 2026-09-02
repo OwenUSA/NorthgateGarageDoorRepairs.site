@@ -172,7 +172,32 @@ Token mapping applied (palette.mjs canonical name -> `app/globals.css` custom pr
 footer bg / mobile-drawer overlay — the only two roles that token renders), `focus` ->
 `--color-focus` (`#023a44`). Semantic `error`/`success`/`warning` untouched.
 
+## Prompt 11 — final acceptance sweep, 14 gates
+
+Full results in the Prompt 11 commit message and chat report. Summary: 13/14 gates clean
+pass, 1 minor residual (below) fixed partially and floored rather than pursued further.
+
+**SEO gate 12 (Lighthouse) — home page `link-text` audit, 92/100, not fully closed,
+floored.** Every services-grid card below `lg` (1440) repeats a "Learn more" link to
+`/services`. Lighthouse's `link-text` audit scores on the link's literal DOM text, not
+its accessible name, so adding `aria-label="Learn more about {item.label}"` (real
+accessibility improvement, kept) does not move this specific heuristic. The audit-
+satisfying fix is to change the *visible* text per card (e.g. "Learn more about Spring
+Repair"), but that varies string length by service label across 8 cards in a
+band whose FIDELITY/ADAPTED classification depends on matching the reference's box/grid
+geometry (`docs/sections.md`) — changing visible copy risks reopening a closed structural
+diff for a Lighthouse heuristic score, not a real usability problem (the `aria-label` fix
+already gives every link a correct accessible name). Floored at first attempt, not
+pursued to `ITERATION_CAP` — this is a one-line SEO nit, not a structural or content
+defect.
+
+Missing-file gates found and closed for real (not residuals): `app/sitemap.ts`,
+`app/robots.ts`, and `app/not-found.tsx` did not exist before Prompt 11 — added, verified
+serving `/sitemap.xml` (5 routes, no more) and `/robots.txt`, and that `/not-found`
+renders inside the shared shell (Header/Footer/skip-link/JSON-LD). `alternates.canonical`
+was also missing from every route's metadata — added, one per page.
+
 ## Email sweep
 
-`EMAIL SWEEP CLEAN` — re-run and pasted in the Prompt 6 and Prompt 7 commits, and again
-after the Prompt 9 palette apply.
+`EMAIL SWEEP CLEAN` — re-run and pasted in the Prompt 6 and Prompt 7 commits, again after
+the Prompt 9 palette apply, and again in Prompt 11's final sweep.

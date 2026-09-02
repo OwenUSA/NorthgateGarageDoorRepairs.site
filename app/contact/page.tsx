@@ -8,6 +8,7 @@ import { ReviewsOrCta } from '@/components/contact/ReviewsOrCta';
 export const metadata: Metadata = {
   title: copy.routes['/contact'].meta.title,
   description: copy.routes['/contact'].meta.description,
+  alternates: { canonical: '/contact' },
 };
 
 export default function ContactPage() {

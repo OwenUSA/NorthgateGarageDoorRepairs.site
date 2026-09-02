@@ -10,6 +10,7 @@ import { HomeMapSection } from '@/components/home/HomeMapSection';
 export const metadata: Metadata = {
   title: copy.routes['/'].meta.title,
   description: copy.routes['/'].meta.description,
+  alternates: { canonical: '/' },
 };
 
 // Built top to bottom per docs/sections.md's reordering (structural change #1):
