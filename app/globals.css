@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------------
+ * Design tokens — Prompt 5, item 1.
+ *
+ * Extracted from the Prompt 1 appearance capture (.harness/cap/ref/*-1440/meta.json,
+ * plus a one-off live probe of button/container/spacing values not covered by the
+ * section-level capture). Literal values only inside @theme — diff.mjs's loadTokens()
+ * statically greps this file for `--color-*`, `--text-*`, `--font-weight-*`,
+ * `--radius-*`, `--shadow-*`, `--spacing-*` keys and normalizes them for the NOVEL
+ * token-conformance check (TOKEN_THRESHOLD = 0), so nothing here may be a var()
+ * reference or a calc() expression.
+ *
+ * Colours are OUR OWN choice, not lifted from the reference (D-09 clones layout/type
+ * scale/spacing/grid, not colour) — checked for AA per D-19 in Prompt 9/11, not assumed.
+ * This ramp is exactly what Prompt 9 rotates: hold every L/C relationship, re-derive
+ * from a new random primary hue. Semantic colours (error/success/focus) are exempt from
+ * that rotation.
+ *
+ * Reference evidence this scale is built from: body text rgb(56,56,56), heading text
+ * rgb(42,47,54), a near-black rgb(17,20,24), white surface; heading sizes 42/48/50/52px
+ * at 1440, body 18px, root 16px; primary CTA button radius 5px, weight 700, no shadow;
+ * container max-width 1140px. See docs/profile.md and this prompt's commit message for
+ * the extraction method.
+ * --------------------------------------------------------------------------------- */
+
+@theme {
+  /* Colour ramp */
+  --color-ink: #1f2933;
+  --color-ink-soft: #4b5563;
+  --color-ink-strong: #0b0f14;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f1f3f4;
+  --color-border: #dde1e3;
+  --color-primary: #c2410c;
+  --color-primary-strong: #9a3412;
+  --color-on-primary: #ffffff;
+
+  /* Semantic colours -- exempt from Prompt 9's hue rotation */
+  --color-error: #b91c1c;
+  --color-success: #15803d;
+  --color-focus: #2563eb;
+
+  /* Type scale -- rem, rootFontPx = 16 */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1.125rem;
+  --text-lg: 1.375rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.125rem;
+  --text-3xl: 2.625rem;
+  --text-4xl: 3.25rem;
+
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --font-weight-black: 800;
+
+  --leading-tight: 1.2;
+  --leading-snug: 1.4;
+  --leading-normal: 1.556;
+  --leading-relaxed: 1.75;
+
+  --tracking-normal: 0px;
+  --tracking-wide: 0.5px;
+
+  /* Spacing scale -- px */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-24: 96px;
+  --spacing-32: 128px;
+  --spacing-40: 160px;
+  --spacing-48: 192px;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 5px;
+  --radius-lg: 10px;
+  --radius-full: 999px;
+
+  /* Shadows -- reference sections/buttons render with no shadow at all; ours stays
+     mostly shadow-free too (ADAPTED sections should not invent shadow where the
+     reference has none), these two exist for our own NOVEL additions only (process
+     steps, card hover per docs/behavior/service-card-hover-press.md). */
+  --shadow-sm: 0 1px 2px rgba(11, 15, 20, 0.06);
+  --shadow-md: 0 8px 20px rgba(11, 15, 20, 0.12);
+
+  /* Container + breakpoints -- BP_SET fixed at 390/768/1440 (see CLAUDE.md CONSTANTS) */
+  --container-max: 1140px;
+  --container-padding: 24px;
+  --breakpoint-sm: 390px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1440px;
+
+  /* Fonts -- next/font/google sets the CSS variables consumed here (Prompt 5, item 2) */
+  --font-body: var(--font-figtree), system-ui, sans-serif;
+  --font-display: var(--font-russo-one), system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink-soft);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    font-weight: var(--font-weight-black);
+    line-height: var(--leading-tight);
+  }
+
+  a {
+    color: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}

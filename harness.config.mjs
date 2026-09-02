@@ -35,9 +35,11 @@ export default {
     'section',
     'main > div',
   ],
-  // Exact class selectors only (no substring matchers) — this theme has no <header>/
-  // <footer> elements, it uses role-bearing divs instead.
-  chromeSelectors: ['.header-one', '.mobile-sticky-header', '.footer'],
+  // Exact class selectors only (no substring matchers). The reference theme has no
+  // <header>/<footer> elements (role-bearing divs instead), but OUR OWN build (Prompt 5)
+  // uses plain semantic <header>/<footer> tags -- both are listed so chrome is
+  // recognized correctly on either side of every diff.
+  chromeSelectors: ['.header-one', '.mobile-sticky-header', '.footer', 'header', 'footer'],
   headerSelector: '.header-one',
   navToggleSelector: '#hamburger, .js-hamburger',
   drawerSelector: '.nav-bar',
@@ -51,6 +53,9 @@ export default {
   contractPath: 'docs/sections.md',
   reportPath: 'docs/divergence.md',
   copyModulePath: 'content/copy.ts',
+  // Prompt 5: the one real token source. Kept as a one-entry list (not the multi-path
+  // default) since there is exactly one @theme block on this site, in app/globals.css.
+  tokenSources: ['app/globals.css'],
 
   // --- Prompt 2: asset provenance ------------------------------------------
   // Checked in order, first match wins. Everything photographic/branded belonging to
