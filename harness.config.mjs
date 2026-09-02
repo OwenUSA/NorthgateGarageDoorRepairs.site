@@ -51,4 +51,35 @@ export default {
   contractPath: 'docs/sections.md',
   reportPath: 'docs/divergence.md',
   copyModulePath: 'content/copy.ts',
+
+  // --- Prompt 2: asset provenance ------------------------------------------
+  // Checked in order, first match wins. Everything photographic/branded belonging to
+  // Fraser Roofing is REPLACE per D-09 — never downloaded. The few TAKE/DELETED cases are
+  // named exactly (one base per rule); the long tail of one-off badge/background/CTA
+  // photos is handled by badgePatterns below with a dynamic per-base id.
+  slotRules: [
+    { match: /^logo$/, id: 'logo', sec: 'header', prov: 'REPLACE',
+      note: 'Business wordmark. Ours: wordmark set in the extracted display font (Russo One) until a real file lands. TODO(fact): logo asset.' },
+    { match: /^fraser-favicon/, id: 'favicon', sec: 'meta', prov: 'REPLACE',
+      note: "Their favicon; ours is generated from our own wordmark, not theirs." },
+    { match: /^close-icon$/, id: 'icon-close', sec: 'nav', prov: 'TAKE',
+      note: 'Generic UI close glyph, no branding — reproduced via lucide-react (X), not downloaded.' },
+    { match: /^%23/, id: 'svg-fragment-ref', sec: '?', prov: 'DELETED',
+      note: 'SVG filter/gradient fragment identifier (url(#id)) picked up by the probe — not a real image asset.' },
+    { match: /^roofle-logo-progress/, id: 'roofle-widget', sec: 'services', prov: 'DELETED',
+      note: 'Third-party "Instant Quote" widget branding (Roofle). Not one of our routes/features — D-12 bans prices/instant-quote CTAs.' },
+    { match: /^fraser_map/, id: 'ref-map-image', sec: 'contact', prov: 'DELETED',
+      note: 'Static map graphic on their site; ours is a live keyless Google Maps iframe per D-07/D-08, not an image.' },
+  ],
+  badgePatterns: [
+    { match: /^(Top-100-02|best-of-gwinett-2025|logo-bbb-1|logo-nwr|logo-spartanburg-chamber-of-commerce|logo-prac|logo-eric-compton-foundation|GAF-logo|ShingleMaster-PREMIER|nextdoor-|faith-family)/,
+      idPrefix: 'badge', sec: 'trust-badges',
+      note: 'Certification/award/community-affiliation badge. Not a fact we can verify — TODO(fact) placeholder chip per D-14, listed in docs/facts-needed.md.' },
+    { match: /^(footer-bg-|postscript-contact-bg-|section-\d+-(bg|transition|content-box-bg|top-image|bottom-image)|Section-\d+-BG|hero-bg-|Testimonial-BG|Page-Title-BG|roofing-city_)/,
+      idPrefix: 'bg', sec: 'decorative',
+      note: "Decorative section background photo/graphic (incl. wave/transition dividers) — this is their art direction, not ours to reuse. Neutral placeholder now; real photo commissioned in Prompt 10." },
+    { match: /^cta-/, idPrefix: 'cta-tile', sec: 'services-grid',
+      note: 'Service-category tile photo behind a CTA card.' },
+  ],
+  sharedSlots: { logo: true, favicon: true, 'icon-close': true },
 };

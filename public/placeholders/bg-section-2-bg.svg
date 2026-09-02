@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1511" viewBox="0 0 1440 1511" role="img" aria-label="bg-section-2-bg placeholder">
+  <rect width="1440" height="1511" fill="#9aa0a6"/>
+  <text x="50%" y="50%" fill="#111111" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="28" font-weight="600" text-anchor="middle" dominant-baseline="middle">bg-section-2-bg</text>
+  <text x="50%" y="50%" dy="34" fill="#111111" fill-opacity="0.75" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="20" text-anchor="middle" dominant-baseline="middle">1440x1511</text>
+</svg>
