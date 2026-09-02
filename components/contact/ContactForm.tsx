@@ -185,7 +185,7 @@ export function ContactForm() {
 
 function inputClass(hasError: boolean) {
   return `w-full rounded-(--radius-md) border px-3 py-2 text-base text-(--color-ink) transition-colors duration-150 ease-out motion-reduce:transition-none ${
-    hasError ? 'border-(--color-error)' : 'border-(--color-border)'
+    hasError ? 'border-(--color-error)' : 'border-(--color-border-strong)'
   }`;
 }
 

@@ -119,4 +119,62 @@ export default {
     '/contact::map':
       'reference band (s03) is five Google Maps iframes with no body copy -- the D-02 city-grid pattern being deleted. Not a text-length comparison; ours is one coords-only embed per D-07/D-08.',
   },
+
+  // --- Prompt 9: palette randomization -------------------------------------
+  // referenceRamp is OUR OWN Prompt 5 ramp (app/globals.css), not lifted from the
+  // reference (D-09 clones structure, not colour). Our real design has exactly one
+  // hue-bearing brand colour today -- --color-primary, used only as the CTA fill -- and
+  // no separate "structural brand hue" anywhere else (headings/nav use the neutral ink
+  // scale). Rather than invent a second hue that isn't actually rendered, `primary` here
+  // is mapped to --color-ink's own (very low) chroma -- honest to what's really on the
+  // page: a near-neutral structural role -- and `accent` is mapped to the real CTA
+  // colour, which is what stays "the highest-chroma element" after rotation.
+  //   primary      <- --color-ink       (structural; low chroma, mostly neutral)
+  //   primaryDeep  <- --color-ink-strong
+  //   accent       <- --color-primary       (the actual CTA fill)
+  //   accentDeep   <- --color-primary-strong
+  //   neutral0/200/400/600/900 <- surface / surface-muted / border / ink-soft / ink-strong
+  referenceRamp: {
+    primary: '#1f2933',
+    primaryDeep: '#0b0f14',
+    accent: '#9a3412',
+    accentDeep: '#7c2d12',
+    neutral0: '#ffffff',
+    neutral200: '#f1f3f4',
+    neutral400: '#dde1e3',
+    neutral600: '#4b5563',
+    neutral900: '#0b0f14',
+  },
+  masterSeed: 42,
+  gradientSamples: 5,
+  // Semantic colours -- exempt from the hue rotation, must keep reading as themselves.
+  // `warning` isn't rendered anywhere yet (no warning-state UI exists), included only
+  // because emitTheme() writes it; a conventional amber, never gated, never applied.
+  semantic: {
+    error: '#b91c1c',
+    success: '#15803d',
+    warning: '#b45309',
+  },
+  // Every fg/bg pair actually rendered in the build today (components/*, Header,
+  // Footer, MobileNavDrawer, MobileCallBar, ContactForm) -- not the ramp in theory.
+  // Keyed on palette.mjs's canonical token names (see referenceRamp above), not our
+  // CSS custom-property names.
+  pairsInUse: [
+    { name: 'cta-label-on-fill', fg: 'neutral0', bg: 'accent', min: 4.5, kind: 'cta' },
+    { name: 'body-text', fg: 'neutral600', bg: 'neutral0', min: 4.5 },
+    { name: 'heading-text', fg: 'primary', bg: 'neutral0', min: 4.5 },
+    { name: 'footer-text', fg: 'neutral0', bg: 'neutral900', min: 4.5 },
+    // borderStrong (== neutral600, generate() derives it automatically) is what the
+    // secondary-button/form-input border now actually renders -- see
+    // --color-border-strong in app/globals.css, added while wiring up this gate: the
+    // decorative --color-border hairline (neutral400) measured well under 3:1 against
+    // white, which is fine for a divider and a real bug for a control edge.
+    { name: 'secondary-button-border', fg: 'borderStrong', bg: 'neutral0', min: 3 },
+    { name: 'error-text', fg: 'error', bg: 'neutral0', min: 4.5 },
+    // The focus ring is a two-layer construction (app/globals.css) -- an inner
+    // surface-coloured halo, then the dark outer ring. The outer ring is always read
+    // against that halo (neutral0), never directly against whatever element it's on,
+    // so there is exactly one focus pairing to gate now, not one per background.
+    { name: 'focus-ring-vs-halo', fg: 'focus', bg: 'neutral0', min: 3, kind: 'focus' },
+  ],
 };

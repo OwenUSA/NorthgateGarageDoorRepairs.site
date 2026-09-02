@@ -32,8 +32,22 @@
   --color-surface: #ffffff;
   --color-surface-muted: #f1f3f4;
   --color-border: #dde1e3;
-  --color-primary: #c2410c;
-  --color-primary-strong: #9a3412;
+  /* Decorative dividers (footer rule, card outlines) use --color-border and are never
+     contrast-gated. Anything a user has to perceive as an interactive boundary --
+     secondary-button outlines, form-field borders -- uses this instead, added while
+     wiring up Prompt 9's AA gate: the decorative hairline measures well under 3:1
+     against white, which is fine for a divider and a real accessibility bug for a
+     control edge (WCAG 2.2 SC 1.4.11). Same value palette.mjs already calls
+     `borderStrong` for this exact role. */
+  --color-border-strong: #4b5563;
+  /* Darkened one step from the original #c2410c/#9a3412 pair while wiring up Prompt 9's
+     AA gate: at L=0.553 the CTA fill held only 5.18:1 against white, and OKLCH hue
+     rotation at fixed L/C doesn't preserve sRGB contrast -- most rotated hues landed
+     just under the 4.5:1 floor. Shifting one lightness step down (still the same hue
+     and a comparable chroma) gives 7.31:1 in the original orange, with enough margin
+     that the rotation holds AA across the hues actually generated. */
+  --color-primary: #9a3412;
+  --color-primary-strong: #7c2d12;
   --color-on-primary: #ffffff;
 
   /* Semantic colours -- exempt from Prompt 9's hue rotation */
@@ -145,8 +159,18 @@
     color: inherit;
   }
 
+  /* Two-layer ring, not a single outline: added while wiring up Prompt 9's AA gate.
+     A flat `outline: 2px solid var(--color-focus)` only holds 3:1 reliably against
+     ONE background -- against a light page it's fine, but the same ring sitting
+     directly on a saturated CTA fill (no offset gap) can fail 3:1 depending on the
+     rotated hue. The inner surface-coloured layer creates a halo that separates the
+     ring from whatever it's on, so the outer dark layer is always read against that
+     light halo, not against the element's own fill -- the one construction that holds
+     3:1 against both a white page and a coloured button with a single focus token. */
   :focus-visible {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 2px;
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-surface),
+      0 0 0 4px var(--color-focus);
   }
 }

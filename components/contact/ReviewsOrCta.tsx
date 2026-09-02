@@ -24,7 +24,7 @@ export function ReviewsOrCta() {
           </a>
           <a
             href="#contact-form"
-            className="cta-button inline-flex items-center rounded-(--radius-md) border border-(--color-border) px-6 py-3 font-bold text-(--color-ink)"
+            className="cta-button inline-flex items-center rounded-(--radius-md) border border-(--color-border-strong) px-6 py-3 font-bold text-(--color-ink)"
           >
             Fill out the form instead
           </a>

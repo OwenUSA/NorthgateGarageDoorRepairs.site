@@ -30,7 +30,7 @@ export function Hero() {
             </a>
             <a
               href="/contact"
-              className="cta-button rounded-(--radius-md) border border-(--color-border) px-6 py-3 font-bold text-(--color-ink)"
+              className="cta-button rounded-(--radius-md) border border-(--color-border-strong) px-6 py-3 font-bold text-(--color-ink)"
             >
               {s.secondaryCtaLabel}
             </a>

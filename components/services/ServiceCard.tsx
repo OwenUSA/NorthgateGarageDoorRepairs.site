@@ -63,7 +63,7 @@ export function ServiceCard({
             </a>
             <Link
               href="/contact"
-              className="cta-button rounded-(--radius-md) border border-(--color-border) px-4 py-2 text-sm font-bold text-(--color-ink)"
+              className="cta-button rounded-(--radius-md) border border-(--color-border-strong) px-4 py-2 text-sm font-bold text-(--color-ink)"
             >
               Request a callback
             </Link>
