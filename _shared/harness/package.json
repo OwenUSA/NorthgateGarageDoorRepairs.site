@@ -1,0 +1,27 @@
+{
+  "name": "@garage/harness",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Site-agnostic clone-and-adapt measurement harness. Share the instrument, never the output.",
+  "scripts": {
+    "test": "node test/selftest.mjs",
+    "profile": "node src/profile-reference.mjs",
+    "capture": "node src/capture.mjs",
+    "diff": "node src/diff.mjs",
+    "assets": "node src/assets.mjs",
+    "inventory": "node src/inventory.mjs",
+    "refcopy": "node src/refcopy.mjs",
+    "similarity": "node src/similarity.mjs",
+    "palette": "node src/palette.mjs",
+    "write-inventory": "node src/write-inventory.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.62.0",
+    "pixelmatch": "^7.2.0",
+    "sharp": "^0.33.5"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
