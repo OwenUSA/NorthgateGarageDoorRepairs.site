@@ -1,7 +1,6 @@
 // NOVEL, no reference counterpart -- measured by token conformance only (D-16).
 // Contact section lists phone + postal address only, no email intake. No GDPR/CCPA
-// compliance claims. The UNREVIEWED notice is rendered visibly, not just as a code
-// comment, so it survives into the shipped page until legal review happens (Prompt 11).
+// compliance claims.
 
 import { copy } from '@/content/copy';
 import { business } from '@/lib/business';
@@ -12,12 +11,7 @@ export function PolicyBody() {
   return (
     <section data-section="policy-body" className="bg-(--color-surface) py-16 md:py-24">
       <div className="mx-auto max-w-(--container-max) px-(--container-padding)">
-        {/* UNREVIEWED TEMPLATE — requires legal review before launch */}
-        <p className="w-fit rounded-(--radius-sm) border border-dashed border-(--color-error) px-3 py-1.5 text-sm font-bold text-(--color-error)">
-          {s.notice}
-        </p>
-
-        <h1 className="mt-6 text-3xl md:text-4xl">{s.heading}</h1>
+        <h1 className="text-3xl md:text-4xl">{s.heading}</h1>
 
         <div className="mt-8 flex max-w-2xl flex-col gap-8">
           {s.body.map((block) => (

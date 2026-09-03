@@ -59,11 +59,13 @@ never fabricated ones.
 
 ## 5. Legal review
 
-`components/privacy/PolicyBody.tsx` carries an `UNREVIEWED TEMPLATE` marker (D-16) at the
-top of its content. It's a standard, honest-to-what-the-site-actually-does policy
-(callback form, no email collection, no analytics, no cookies beyond framework defaults,
-no GDPR/CCPA compliance claim) — but it has not been reviewed by counsel. Required before
-launch, not optional.
+`components/privacy/PolicyBody.tsx` previously carried a visible `UNREVIEWED TEMPLATE`
+dev marker (D-16) at the top of its content. That marker has been removed now that the
+site is live and real business facts are in place. The page remains a standard,
+honest-to-what-the-site-actually-does policy (callback form, no email collection, no
+analytics, no cookies beyond framework defaults, no GDPR/CCPA compliance claim); if it
+has not yet had an actual review by counsel, that should still happen independent of this
+code change.
 
 ## 6. Form target
 

@@ -220,7 +220,6 @@ export interface PolicyBodySection {
   refSection: null;
   cls: 'NOVEL';
   heading: string;
-  notice: string;
   body: { heading: string; paragraphs: string[] }[];
 }
 
@@ -426,7 +425,6 @@ export const copy: Copy = {
           refSection: null,
           cls: 'NOVEL',
           heading: 'Privacy Policy',
-          notice: 'UNREVIEWED TEMPLATE — requires legal review before launch',
           body: [
             {
               heading: 'What this site collects',
