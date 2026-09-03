@@ -54,7 +54,7 @@ export const business = {
   mapEmbedSrc: (zoom: number) =>
     `https://www.google.com/maps?q=45.5788,-122.6929&z=${zoom}&output=embed`,
 
-  siteUrl: 'https://northgategaragedoorrepairs.example',
+  siteUrl: 'https://northgategaragedoorrepairs.site',
 } as const;
 
 export type Business = typeof business;

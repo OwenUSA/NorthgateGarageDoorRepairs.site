@@ -24,6 +24,11 @@ export function localBusinessJsonLd() {
       latitude: business.geo.lat,
       longitude: business.geo.lng,
     },
+    // Single service-area place, not a city array (D-02 bans an areaServed city grid).
+    areaServed: {
+      '@type': 'Place',
+      name: 'Portland Metro Area, OR',
+    },
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: [

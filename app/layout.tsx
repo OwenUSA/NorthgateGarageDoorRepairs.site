@@ -24,11 +24,25 @@ const russoOne = Russo_One({
 
 export const metadata: Metadata = {
   metadataBase: new URL(business.siteUrl),
-  title: {
-    default: business.name,
-    template: `%s | ${business.name}`,
-  },
+  // Each route sets its own complete, already-branded title/description in its own
+  // metadata export (content/copy.ts), so no `template` here -- a template would
+  // double up the business name that's already part of every page title.
+  title: business.name,
   description: business.tagline,
+  openGraph: {
+    title: business.name,
+    description: business.tagline,
+    url: business.siteUrl,
+    siteName: business.name,
+    type: 'website',
+    images: [{ url: '/placeholders/bg-hero-bg-desktop.svg', width: 1440, height: 891, alt: business.name }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: business.name,
+    description: business.tagline,
+    images: ['/placeholders/bg-hero-bg-desktop.svg'],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

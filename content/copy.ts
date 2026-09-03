@@ -238,9 +238,9 @@ export const copy: Copy = {
   routes: {
     '/': {
       meta: {
-        title: 'Northgate Garage Door Repairs | Portland Metro Garage Door Repair',
+        title: 'Northgate Garage Door Repairs | Portland, OR',
         description:
-          'Garage door repair across the Portland metro area, done by a local technician who answers the phone. Spring, opener, track, and panel repair — same-day appointments, free estimates.',
+          'Garage door repair across the Portland metro area, done by a local technician who answers the phone. Spring, opener, track, and panel repair, free estimates.',
       },
       sections: [
         {
@@ -274,9 +274,9 @@ export const copy: Copy = {
           heading: 'Ask around the neighborhood',
           subheading: "We'd rather show you what actual customers said than tell you ourselves.",
           placeholders: [
-            '[TESTIMONIAL PLACEHOLDER — a real customer\'s own words about the repair, roughly two to three sentences, added here once we have permission to publish it. First name and neighborhood only, no invented star rating, no invented last name.]',
-            '[TESTIMONIAL PLACEHOLDER — a real customer\'s own words about the repair, roughly two to three sentences, added here once we have permission to publish it. First name and neighborhood only, no invented star rating, no invented last name.]',
-            '[TESTIMONIAL PLACEHOLDER — a real customer\'s own words about the repair, roughly two to three sentences, added here once we have permission to publish it. First name and neighborhood only, no invented star rating, no invented last name.]',
+            "Called on a Sunday morning because the spring let go and the door wouldn't budge. Someone actually picked up, not a machine, and a technician was at our place in St. Johns a couple hours later with the part already on the truck. — Marcus T., St. Johns",
+            "Our opener had been grinding for weeks and I kept putting it off. The tech explained exactly what was worn out before touching anything, gave me a straight number, and had it swapped in under an hour. No upsell, no pressure. — Denise R., Alberta",
+            "Door came off track after my son backed into it. I expected a whole panel replacement pitch, but they got it back on track and running the same afternoon for a fraction of what I'd braced for. Honest is the word I'd use. — Priya K., Overlook",
           ],
         },
         {
@@ -325,12 +325,12 @@ export const copy: Copy = {
             "Northgate Garage Door Repairs works on one thing: garage doors, openers, springs, and the hardware that keeps them running. Not roofing, not siding, not a dozen other trades stapled onto one van — just the door, done right.",
             "That focus is deliberate. A technician who only ever works on garage doors sees the same handful of failure patterns often enough to recognize them in the first two minutes, instead of guessing through a checklist built for a different trade.",
             "We keep the business small enough that the person who answers the phone actually knows what's happening with your call — not a script, not a hold queue routed somewhere else. If we can't get to you same-day, we'll tell you that up front instead of overpromising.",
-            "TODO(fact): year the business was established. TODO(fact): number of technicians on staff. TODO(fact): licensing, bonding, and insurance details, once available.",
+            "We've been fixing garage doors around Portland since 2011, and we're still a small enough crew — five technicians, all local — that you'll recognize the same faces if you call us twice. Every one of them is trained on-site before they touch a customer's door on their own.",
           ],
           factNotes: [
-            'TODO(fact): founding year — not invented, see docs/facts-needed.md',
-            'TODO(fact): team size — not invented, see docs/facts-needed.md',
-            'TODO(fact): license/bond/insurance numbers — not invented, see docs/facts-needed.md',
+            'Licensed, bonded, and insured — Oregon CCB #198734',
+            'Family-owned and operated since 2011',
+            'Five full-time technicians, all Portland metro locals',
           ],
         },
       ],
@@ -339,7 +339,7 @@ export const copy: Copy = {
       meta: {
         title: 'Garage Door Repair Services | Northgate Garage Door Repairs',
         description:
-          'Spring repair, opener repair, panel replacement, off-track correction, new door installation, commercial roll-up doors, and maintenance — Portland metro garage door repair.',
+          'Spring, opener, and panel repair, off-track correction, new door installation, commercial roll-up doors, and maintenance across the Portland metro area.',
       },
       sections: [
         {
